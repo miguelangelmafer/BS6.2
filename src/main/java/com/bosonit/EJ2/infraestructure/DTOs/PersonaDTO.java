@@ -1,4 +1,4 @@
-package com.bosonit.EJ2.infraestructure;
+package com.bosonit.EJ2.infraestructure.DTOs;
 
 import lombok.Data;
 

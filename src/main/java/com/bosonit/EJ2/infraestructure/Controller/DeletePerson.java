@@ -1,8 +1,9 @@
 package com.bosonit.EJ2.infraestructure.Controller;
 
 
+import com.bosonit.EJ2.application.Port.DeletePersonPort;
 import com.bosonit.EJ2.domain.PersonaEnt;
-import com.bosonit.EJ2.application.PersonaEntService;
+import com.bosonit.EJ2.application.UseCase.GetPersonUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,12 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class DeletePerson {
 
     @Autowired
-    PersonaEntService personaEntService;
+    GetPersonUseCase getPersonUseCase;
+
+    @Autowired
+    DeletePersonPort deletePersonPort;
 
     @DeleteMapping("/delete/{id}")
     public String deletePerson(@PathVariable Integer id) throws Exception {
-        PersonaEnt personaEnt = personaEntService.getPersonaByID(id);
-        personaEntService.deletePerson(personaEnt);
+        PersonaEnt personaEnt = getPersonUseCase.getPersonaByID(id);
+        deletePersonPort.deletePerson(personaEnt);
         return "Persona eliminada";
     }
 }

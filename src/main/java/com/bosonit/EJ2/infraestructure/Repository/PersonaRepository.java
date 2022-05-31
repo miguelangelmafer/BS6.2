@@ -1,4 +1,4 @@
-package com.bosonit.EJ2.infraestructure;
+package com.bosonit.EJ2.infraestructure.Repository;
 
 import com.bosonit.EJ2.domain.PersonaEnt;
 import org.springframework.data.jpa.repository.JpaRepository;

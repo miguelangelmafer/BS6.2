@@ -1,8 +1,9 @@
 package com.bosonit.EJ2.infraestructure.Controller;
 
+import com.bosonit.EJ2.application.Port.UpdatePersonaPort;
 import com.bosonit.EJ2.domain.PersonaEnt;
-import com.bosonit.EJ2.application.PersonaEntService;
-import com.bosonit.EJ2.infraestructure.PersonaDTO;
+import com.bosonit.EJ2.application.UseCase.GetPersonUseCase;
+import com.bosonit.EJ2.infraestructure.DTOs.PersonaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +13,15 @@ import org.springframework.web.bind.annotation.*;
 public class UpdatePerson {
 
     @Autowired
-    PersonaEntService personaEntService;
+    GetPersonUseCase getPersonUseCase;
+
+    @Autowired
+    UpdatePersonaPort updatePersonaPort;
 
     @PutMapping("/update/{id}")
     public PersonaEnt updatePersona(@PathVariable Integer id, @RequestBody PersonaDTO personaDTO) throws Exception {
-        PersonaEnt personaEnt = personaEntService.getPersonaByID(id);
-        personaEntService.updatePerson(personaEnt,personaDTO);
+        PersonaEnt personaEnt = getPersonUseCase.getPersonaByID(id);
+        updatePersonaPort.updatePerson(personaEnt,personaDTO);
         return personaEnt;
     }
 }
