@@ -1,4 +1,4 @@
-package com.bosonit.EJ2.application.UseCase;
+package com.bosonit.EJ2.application.Config;
 
 
 import org.modelmapper.ModelMapper;

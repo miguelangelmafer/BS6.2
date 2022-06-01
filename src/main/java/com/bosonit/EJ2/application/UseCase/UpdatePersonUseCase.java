@@ -1,5 +1,6 @@
 package com.bosonit.EJ2.application.UseCase;
 
+import com.bosonit.EJ2.Exceptions.UnprocesableException;
 import com.bosonit.EJ2.application.Port.UpdatePersonaPort;
 import com.bosonit.EJ2.domain.PersonaEnt;
 import com.bosonit.EJ2.infraestructure.DTOs.PersonaDTO;

@@ -1,5 +1,6 @@
 package com.bosonit.EJ2.application.UseCase;
 
+import com.bosonit.EJ2.Exceptions.NotFoundException;
 import com.bosonit.EJ2.application.Port.GetPersonPort;
 import com.bosonit.EJ2.domain.PersonaEnt;
 import com.bosonit.EJ2.infraestructure.Repository.PersonaRepository;
@@ -16,7 +17,7 @@ public class GetPersonUseCase implements GetPersonPort {
 
     public PersonaEnt getPersonaByID(Integer id) throws Exception
     {
-        return personaRepository.findById(id).orElseThrow(()-> new Exception());
+        return personaRepository.findById(id).orElseThrow(()-> new NotFoundException("Usuario no encontrado"));
     }
 
     //getnombre

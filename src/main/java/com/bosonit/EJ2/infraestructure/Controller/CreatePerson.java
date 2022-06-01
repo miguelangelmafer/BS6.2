@@ -1,5 +1,6 @@
 package com.bosonit.EJ2.infraestructure.Controller;
 
+import com.bosonit.EJ2.Exceptions.UnprocesableException;
 import com.bosonit.EJ2.application.Port.CreatePersonPort;
 import com.bosonit.EJ2.domain.PersonaEnt;
 import com.bosonit.EJ2.application.UseCase.GetPersonUseCase;
@@ -27,8 +28,12 @@ public class CreatePerson {
 
     @PostMapping("/add")
     public PersonaDTO addPersona(@RequestBody PersonaDTO personaDTO) throws Exception {
-        PersonaEnt personaEnt = createPersonPort.addPersona(modelMapper.map(personaDTO, PersonaEnt.class));
-        personaDTO.setId_persona(personaEnt.getId_persona());
-        return personaDTO;
+        try {
+            PersonaEnt personaEnt = createPersonPort.addPersona(modelMapper.map(personaDTO, PersonaEnt.class));
+            personaDTO.setId_persona(personaEnt.getId_persona());
+            return personaDTO;
+        } catch (Exception e) {
+            throw new UnprocesableException("Valores incorrectos");
+        }
     }
 }
