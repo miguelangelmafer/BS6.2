@@ -1,6 +1,7 @@
 package com.bosonit.EJ2.infraestructure.Controller;
 
 
+import com.bosonit.EJ2.Exceptions.NotFoundException;
 import com.bosonit.EJ2.application.Port.DeletePersonPort;
 import com.bosonit.EJ2.domain.PersonaEnt;
 import com.bosonit.EJ2.application.UseCase.GetPersonUseCase;
@@ -29,7 +30,7 @@ public class DeletePerson {
             deletePersonPort.deletePerson(personaEnt);
             return "Persona eliminada";
         } catch (Exception e) {
-          throw new HttpClientErrorException(HttpStatus.NOT_ACCEPTABLE);
+            throw new NotFoundException("El ususario: " + id + " no existe y no se puede eliminar");
         }
     }
 }

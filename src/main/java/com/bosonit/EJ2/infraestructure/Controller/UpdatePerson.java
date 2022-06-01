@@ -1,5 +1,6 @@
 package com.bosonit.EJ2.infraestructure.Controller;
 
+import com.bosonit.EJ2.Exceptions.NotFoundException;
 import com.bosonit.EJ2.application.Port.UpdatePersonaPort;
 import com.bosonit.EJ2.domain.PersonaEnt;
 import com.bosonit.EJ2.application.UseCase.GetPersonUseCase;
@@ -27,7 +28,7 @@ public class UpdatePerson {
             updatePersonaPort.updatePerson(personaEnt,personaDTO);
             return personaEnt;
         }catch (Exception e){
-            throw new HttpClientErrorException(HttpStatus.NOT_ACCEPTABLE);
+            throw new NotFoundException("El ususario: " + id + " no existe y no se puede actualizar");
         }
 
     }
