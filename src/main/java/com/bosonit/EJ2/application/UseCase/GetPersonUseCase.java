@@ -16,7 +16,7 @@ public class GetPersonUseCase implements GetPersonPort {
 
     public PersonaEnt getPersonaByID(Integer id) throws Exception
     {
-        return personaRepository.findById(id).orElseThrow(()-> new Exception("Persona no encontrada"));
+        return personaRepository.findById(id).orElseThrow(()-> new Exception());
     }
 
     //getnombre
