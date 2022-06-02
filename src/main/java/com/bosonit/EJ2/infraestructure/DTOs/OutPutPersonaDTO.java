@@ -5,9 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-
-public class PersonaDTO{
-
+public class OutPutPersonaDTO {
     private Integer id_persona;
     private String usuario;
     private Integer password;
@@ -21,4 +19,3 @@ public class PersonaDTO{
     private String imagen_url;
     private Date termination_date;
 }
-

@@ -1,9 +1,8 @@
 package com.bosonit.EJ2.application.UseCase;
 
-import com.bosonit.EJ2.Exceptions.UnprocesableException;
 import com.bosonit.EJ2.application.Port.UpdatePersonaPort;
 import com.bosonit.EJ2.domain.PersonaEnt;
-import com.bosonit.EJ2.infraestructure.DTOs.PersonaDTO;
+import com.bosonit.EJ2.infraestructure.DTOs.InputPersonaDTO;
 import com.bosonit.EJ2.infraestructure.Repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ public class UpdatePersonUseCase implements UpdatePersonaPort {
 
     @Autowired
     PersonaRepository personaRepository;
-    public PersonaEnt updatePerson(PersonaEnt personaOld, PersonaDTO personaNew) {
+    public PersonaEnt updatePerson(PersonaEnt personaOld, InputPersonaDTO personaNew) {
 
         personaOld.setPassword(personaNew.getPassword());
         personaOld.setName(personaNew.getName());

@@ -4,7 +4,7 @@ package com.bosonit.EJ2.infraestructure.Controller;
 import com.bosonit.EJ2.Exceptions.NotFoundException;
 import com.bosonit.EJ2.application.Port.GetPersonPort;
 import com.bosonit.EJ2.domain.PersonaEnt;
-import com.bosonit.EJ2.infraestructure.DTOs.PersonaDTO;
+import com.bosonit.EJ2.infraestructure.DTOs.OutPutPersonaDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,32 +25,32 @@ public class GetPerson {
 
     @GetMapping("/id/{id}")
 
-    public PersonaDTO getPersonByID(@PathVariable Integer id) throws Exception {
+    public OutPutPersonaDTO getPersonByID(@PathVariable Integer id) throws Exception {
         try {
             PersonaEnt personaEnt = getPersonPort.getPersonaByID(id);
-            PersonaDTO personaDTO = modelMapper.map(personaEnt,PersonaDTO.class);
-            return personaDTO;
+            OutPutPersonaDTO outPutPersonaDTO = modelMapper.map(personaEnt,OutPutPersonaDTO.class);
+            return outPutPersonaDTO;
         } catch (Exception e) {
             throw new NotFoundException("No se encuentra el ususario " + id);
         }
     }
 
     @GetMapping("/name/{nombre}")
-    public List<PersonaDTO> getPersonByName(@PathVariable String nombre) throws Exception {
+    public List<OutPutPersonaDTO> getPersonByName(@PathVariable String nombre) throws Exception {
         List <PersonaEnt> personaEntList = getPersonPort.getPersonByName(nombre);
-        TypeToken<List<PersonaDTO>> typeToken = new TypeToken<>() {
+        TypeToken<List<OutPutPersonaDTO>> typeToken = new TypeToken<>() {
         };
-        List<PersonaDTO> personaDTOList = modelMapper.map(personaEntList, typeToken.getType());
-        return personaDTOList;
+        List<OutPutPersonaDTO> outPutPersonaDTOList = modelMapper.map(personaEntList, typeToken.getType());
+        return outPutPersonaDTOList;
     }
 
     @GetMapping("/all")
-    public List<PersonaDTO> getAllPerson(){
+    public List<OutPutPersonaDTO> getAllPerson(){
         List <PersonaEnt> personaEntList = getPersonPort.getAllPerson();
-        TypeToken<List<PersonaDTO>> typeToken = new TypeToken<>() {
+        TypeToken<List<OutPutPersonaDTO>> typeToken = new TypeToken<>() {
         };
-        List<PersonaDTO> personaDTOList = modelMapper.map(personaEntList, typeToken.getType());
-        return personaDTOList;
+        List<OutPutPersonaDTO> outPutPersonaDTOList = modelMapper.map(personaEntList, typeToken.getType());
+        return outPutPersonaDTOList;
     }
 
 }

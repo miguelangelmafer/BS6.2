@@ -4,7 +4,7 @@ import com.bosonit.EJ2.Exceptions.UnprocesableException;
 import com.bosonit.EJ2.application.Port.CreatePersonPort;
 import com.bosonit.EJ2.domain.PersonaEnt;
 import com.bosonit.EJ2.application.UseCase.GetPersonUseCase;
-import com.bosonit.EJ2.infraestructure.DTOs.PersonaDTO;
+import com.bosonit.EJ2.infraestructure.DTOs.InputPersonaDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,11 +27,11 @@ public class CreatePerson {
     CreatePersonPort createPersonPort;
 
     @PostMapping("/add")
-    public PersonaDTO addPersona(@RequestBody PersonaDTO personaDTO) throws Exception {
+    public InputPersonaDTO addPersona(@RequestBody InputPersonaDTO inputPersonaDTO) throws Exception {
         try {
-            PersonaEnt personaEnt = createPersonPort.addPersona(modelMapper.map(personaDTO, PersonaEnt.class));
-            personaDTO.setId_persona(personaEnt.getId_persona());
-            return personaDTO;
+            PersonaEnt personaEnt = createPersonPort.addPersona(modelMapper.map(inputPersonaDTO, PersonaEnt.class));
+            inputPersonaDTO.setId_persona(personaEnt.getId_persona());
+            return inputPersonaDTO;
         } catch (Exception e) {
             throw new UnprocesableException("Valores incorrectos");
         }
