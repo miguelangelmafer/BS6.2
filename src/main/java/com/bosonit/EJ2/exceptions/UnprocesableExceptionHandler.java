@@ -1,4 +1,4 @@
-package com.bosonit.EJ2.Exceptions;
+package com.bosonit.EJ2.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,14 +9,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.Date;
 
 @RestControllerAdvice
-public class NotFoundExceptionHandler extends ResponseEntityExceptionHandler {
+public class UnprocesableExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(NotFoundException.class)
-    public final ResponseEntity<CustomError> handleNotFoundException(NotFoundException ex) {
+    @ExceptionHandler(UnprocesableException.class)
+    public final ResponseEntity<CustomError> handleUnprocesableException(UnprocesableException ex) {
         CustomError customError = new CustomError
                 (new Date(),
-                        404,
+                        422,
                         ex.getMessage());
-        return new ResponseEntity<CustomError>(customError, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<CustomError>(customError, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }

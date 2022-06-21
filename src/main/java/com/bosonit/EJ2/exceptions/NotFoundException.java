@@ -1,4 +1,4 @@
-package com.bosonit.EJ2.Exceptions;
+package com.bosonit.EJ2.exceptions;
 
 public class NotFoundException extends  RuntimeException{
     public NotFoundException(String message) {

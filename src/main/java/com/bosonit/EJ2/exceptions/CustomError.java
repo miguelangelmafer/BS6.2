@@ -1,4 +1,4 @@
-package com.bosonit.EJ2.Exceptions;
+package com.bosonit.EJ2.exceptions;
 
 import java.util.Date;
 
